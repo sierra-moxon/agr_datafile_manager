@@ -1,0 +1,107 @@
+version: "3.2"
+
+services:
+  neo4j:
+    container_name: neo4j
+    image: agrdocker/agr_neo4j_env:latest
+    volumes:
+      - type: volume
+        source: agr_data_share
+        target: /var/lib/neo4j/import
+        volume:
+          nocopy: true
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    networks:
+      - esnet
+      - default
+    environment:
+      - NEO4J_dbms_memory_heap_max__size=12000m
+      - NEO4J_dbms_memory_pagecache_size=12000m
+
+
+  agr_loader:
+    image: agrdocker/agr_loader_run:latest
+    volumes:
+      - type: volume
+        source: agr_data_share
+        target: /usr/src/app/tmp
+        volume:
+          nocopy: true
+    networks:
+      - esnet
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TEST_SET=False
+      - UNIT_TESTS=False
+      - NEO4J_HOST=neo4j
+      - NET=production
+      - ALLIANCE_RELEASE=3.1.1
+      - FMS_API_URL=https://fms.alliancegenome.org
+      - DOWNLOAD_HOST=download.alliancegenome.org
+      - API_KEY=${API_KEY}
+    entrypoint:
+      - python3
+      - -u 
+      - src/aggregate_loader.py
+      - -c 
+      - develop.yml
+
+  agr_loader_test:
+    image: agrdocker/agr_loader_run:latest
+    volumes:
+      - type: volume
+        source: agr_data_share
+        target: /usr/src/app/tmp
+        volume:
+          nocopy: true
+    networks:
+      - esnet
+    environment:
+     - PYTHONUNBUFFERED=1
+     - TEST_SET=True
+     - UNIT_TESTS=False
+     - NEO4J_HOST=neo4j
+     - NET=production
+     - ALLIANCE_RELEASE=3.1.1
+     - FMS_API_URL=https://fms.alliancegenome.org
+     - DOWNLOAD_HOST=download.alliancegenome.org
+     - API_KEY=${API_KEY}
+    entrypoint:
+      - python3
+      - -u 
+      - src/aggregate_loader.py
+      - -c 
+      - test.yml
+
+  agr_loader_test_unit_tests:
+    image: agrdocker/agr_loader_run:latest
+    volumes:
+      - type: volume
+        source: agr_data_share
+        target: /usr/src/app/tmp
+        volume:
+          nocopy: true
+    networks:
+      - esnet
+    environment:
+     - PYTHONUNBUFFERED=1
+     - TEST_SET=True
+     - UNIT_TESTS=False
+     - NEO4J_HOST=neo4j
+     - NET=production
+     - ALLIANCE_RELEASE=3.1.1
+     - FMS_API_URL=https://fms.alliancegenome.org
+     - DOWNLOAD_HOST=download.alliancegenome.org
+     - API_KEY=${API_KEY}
+    entrypoint:
+      - pytest
+      - --verbose
+      - -n=10
+
+networks:
+  esnet:
+
+volumes:
+  agr_data_share:
