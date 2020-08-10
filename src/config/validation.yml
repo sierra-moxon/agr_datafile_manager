@@ -1,0 +1,162 @@
+schemaVersion:
+  regex: ^(\d(\.\d){3})$
+  required: True
+releaseVersion: 
+  regex: ^(\d(\.\d){2})$
+  required: True
+SPECIES:
+  type: list
+  allowed: [Species]
+BGI:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN, SARS-CoV-2]
+CONSTRUCT:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD]
+ALLELE:
+  type: list
+  allowed: [FB, WB, ZFIN, RGD, MGI]
+SQTR:
+  type: list
+  allowed: [ZFIN]
+AGM:
+  type: list
+  allowed: [ZFIN, MGI, RGD, WB]
+DAF:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+PHENOTYPE:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+EXPRESSION:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI]
+GAF:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+GEOXREF:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+FASTA:
+  type: list
+  allowed: [R627, GRCm38, GRCz11, Rnor60, WBcel235]
+GENEEEXPRESSIONATLASSITEMAP:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+VEPGENE:
+  type: list
+  allowed: [FB, WB, ZFIN, RGD, MGI]
+VEPGENE:
+  type: list
+  allowed: [FB, WB, ZFIN, RGD, MGI]
+VEPTRANSCRIPT:
+  type: list
+  allowed: [FB, WB, ZFIN, RGD, MGI]
+VARIATION:
+  type: list
+  allowed: [FB, WB, ZFIN, RGD, MGI]
+ONTOLOGY:
+  type: list
+  allowed: 
+    - GO
+    - SO
+    - DOID
+    - MI 
+    - ZFA
+    - ZFS
+    - WBBT
+    - CL
+    - FBBT
+    - FBCV
+    - MMUSDV
+    - BSPO
+    - MMO
+    - WBLS
+    - EMAPA
+    - MA
+    - ECO
+    - UBERON
+    - ECOMAP
+    - PATO
+    - APO
+    - DPO
+    - FYPO
+    - WBPhenotype
+    - MP
+    - HP
+    - OBI
+    - BTO
+    - CHEBI
+ExpressionAtlas:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+ORTHO:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+ExpressionRibbon:
+  type: list
+  allowed: [ExpressionRibbon]
+ExpressionRibbonOther:
+  type: list
+  allowed: [ExpressionRibbonOther]
+GeneDiseaseOrtho:
+  type: list
+  allowed: [GeneDiseaseOrtho]
+Closure:
+  type: list
+  allowed: 
+    - GO 
+    - SO 
+    - DOID
+    - MI 
+    - ZFA 
+    - ZFS 
+    - WBBT 
+    - CL 
+    - FBCV
+    - FBBT
+    - MMUSDV
+    - BSPO
+    - MMO
+    - WBLS
+    - EMAPA
+    - MA
+    - ECO
+    - UBERON
+    - PATO
+    - APO
+    - DPO
+    - FYPO
+    - WBPhenotype
+    - MP
+    - HP
+    - OBI
+    - BTO
+    - CHEBI
+INTERACTION-MOL:
+  type: list
+  allowed: [COMBINED]
+INTERACTION-XREF:
+  type: list
+  allowed: [COMBINED]
+INTERACTION-MOD-XREF:
+  type: list
+  allowed: [COMBINED]
+GeneDescriptions:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+ECOMAP:
+  type: list
+  allowed: [ECOMAP]
+GFF:
+  type: list
+  allowed: [FB, SGD, WB, ZFIN, RGD, MGI, HUMAN]
+DB-SUMMARY:
+  type: list
+  allowed: [2.3.0, 3.0.0]
+FileTransactorThreads:
+  type: integer
+  required: True
+Neo4jTransactorThreads:
+  type: integer
+  required: True
