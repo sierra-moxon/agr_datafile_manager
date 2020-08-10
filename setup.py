@@ -1,4 +1,4 @@
-import setuptools
+from setuptools import find_packages
 #!/usr/bin/env python3
 
 from setuptools import setup
@@ -9,5 +9,6 @@ setup(name='agr-datafile-manager',
       url='',
       author='Alliance',
       author_email='help@alliancegenome.org',
-      packages=['agr-datafile-manager'],
+      package_dir={'': 'src'},
+      packages=find_packages('src'),
       zip_safe=False)
